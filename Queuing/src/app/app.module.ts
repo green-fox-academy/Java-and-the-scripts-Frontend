@@ -12,7 +12,7 @@ import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
-    HomepageComponent
+    HomepageComponent,
     RegistrationComponent,
     LoginComponent
   ],
