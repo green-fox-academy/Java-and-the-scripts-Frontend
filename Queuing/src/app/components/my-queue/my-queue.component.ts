@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./my-queue.component.css']
 })
 export class MyQueueComponent implements OnInit {
+  hasQueue: boolean = true;
 
   constructor() { }
 
