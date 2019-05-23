@@ -1,7 +1,7 @@
 export interface Queue {
-  id: Number,
-	doctor: String,
-	address: String,
-	in_line: Number,
-	remaining_time: String,
+  id: number,
+	doctor: string,
+	address: string,
+	in_line: number,
+	remaining_time: string,
 }

@@ -17,7 +17,7 @@
     <div *ngIf="hasQueue; else templateName" class="queue">
       <p>There are <span>{{queue.in_line}}</span> patients in front of you</p>
       <p>You can still do something else for about</p>
-      <p class="remaining-time">{{queue.remaining_time}}</p>
+      <p class="remaining-time">{{remain}}</p>
       <p>You will visit <span>{{queue.doctor}}</span> doctor</p>
       <p>You have to go to <span>{{queue.address}}</span></p>
     </div>
