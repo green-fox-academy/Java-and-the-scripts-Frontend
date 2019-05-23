@@ -10,6 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthenticationService } from './services/authentication/authentication.service';
 import { DoctorSelectorComponent } from './components/doctor-selector/doctor-selector.component';
+import { SelectQueueComponent } from './components/select-queue/select-queue.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { DoctorSelectorComponent } from './components/doctor-selector/doctor-sel
     HomepageComponent,
     RegistrationComponent,
     LoginComponent,
-    DoctorSelectorComponent
+    DoctorSelectorComponent,
+    SelectQueueComponent
   ],
   imports: [
     BrowserModule,

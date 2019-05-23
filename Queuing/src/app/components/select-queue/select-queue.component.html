@@ -1,3 +1,11 @@
-<p>
-  select-queue works!
-</p>
+<div id="form-container">
+  <p>Please choose which doctor you would like to visit!</p>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" id="new-queue-form">
+    <app-doctor-selector (select)="onSelected($event)"></app-doctor-selector>
+    <select formControlName="category">
+      <option [ngValue]="null" selected hidden>{{defaultValueCat}}</option>
+      <option *ngFor="let category of categories">{{category}}</option>
+    </select>
+  </form>
+  <button type="submit">get in queue</button>
+</div>
