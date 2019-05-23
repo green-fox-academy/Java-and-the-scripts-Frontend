@@ -50,7 +50,11 @@ export class SelectQueueComponent implements OnInit {
     });
 
     this.authenticationService.authState.subscribe(user => {
-      this.username = user.username;
+      if(user){
+        this.username = user.username;
+      }
+      console.log(this.username);
+      console.log(user);
     });
   }
 

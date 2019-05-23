@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
 
 @Component({
   selector: 'app-homepage',
@@ -6,10 +7,36 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./homepage.component.css']
 })
 export class HomepageComponent implements OnInit {
+  username: string;
+  date = new Date();
+  options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+  currentTime: string =
+    new Date().getHours() +
+    ':' +
+    new Date().getMinutes() +
+    ':' +
+    new Date().getSeconds();
+  currentDate: string = new Date().toLocaleDateString('en-US', this.options);
 
-  constructor() { }
+  constructor(private authenticationService: AuthenticationService) {}
 
   ngOnInit() {
+    this.displayLiveTime();
+    this.authenticationService.authState.subscribe(user => {
+      if (user) {
+        this.username = user.username;
+      }
+    });
   }
 
+  displayLiveTime(): void {
+    setInterval(() => {
+      this.currentTime =
+        new Date().getHours() +
+        ':' +
+        new Date().getMinutes() +
+        ':' +
+        new Date().getSeconds();
+    }, 1000);
+  }
 }

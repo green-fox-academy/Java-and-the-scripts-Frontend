@@ -15,7 +15,7 @@ const routes: Routes = [
   {path: 'doctors', component: DoctorSelectorComponent},
   {path: 'queue', component: SelectQueueComponent},
   {path: 'myqueue', component: MyQueueComponent},
-  // {path: '', redirectTo: '/register', pathMatch: 'full'}
+  {path: '', redirectTo: '/register', pathMatch: 'full'}
 ];
 
 @NgModule({

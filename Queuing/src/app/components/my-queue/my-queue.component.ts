@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { QueueService } from 'src/app/services/queue/queue.service';
 import { Queue } from 'src/app/models/Queue';
+import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
 
 @Component({
   selector: 'app-my-queue',
@@ -17,7 +18,7 @@ export class MyQueueComponent implements OnInit {
     ':' +
     new Date().getSeconds();
   currentDate: string = new Date().toLocaleDateString('en-US', this.options);
-  hasQueue: boolean = true;
+  hasQueue = true;
   queue: Queue = {
     id: 12569,
     doctor: 'Doctor Ulmer',
@@ -26,13 +27,22 @@ export class MyQueueComponent implements OnInit {
     remaining_time: '10:30'
   };
   remain: string = this.queue.remaining_time;
+  username: string;
 
-  constructor(private queueService: QueueService) {}
+  constructor(
+    private queueService: QueueService,
+    private authenticationService: AuthenticationService
+  ) {}
 
   ngOnInit() {
     this.displayLiveTime();
-    let allMinutes = 60 * Number(this.queue.remaining_time.split(':')[1]);
+    const allMinutes = 60 * Number(this.queue.remaining_time.split(':')[1]);
     this.displayRemainingTime(allMinutes);
+    this.authenticationService.authState.subscribe(user => {
+      if (user) {
+        this.username = user.username;
+      }
+    });
   }
 
   getMyQueue(): void {

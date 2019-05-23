@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { loadLContextFromNode } from '@angular/core/src/render3/discovery_utils';
 import { RegistrationService } from 'src/app/services/registration/registration.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registration',
@@ -15,7 +16,8 @@ export class RegistrationComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private registrationService: RegistrationService
+    private registrationService: RegistrationService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -54,6 +56,9 @@ export class RegistrationComponent implements OnInit {
           this.successMessage = 'Successful registration!';
           this.deleteValues();
         }
+        setTimeout(()=>{
+          this.router.navigate(['/login'])
+        }, 3000)
       });
   }
   deleteValues() {
