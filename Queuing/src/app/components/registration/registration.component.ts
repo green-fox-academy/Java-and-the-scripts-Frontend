@@ -10,6 +10,8 @@ import { RegistrationService } from 'src/app/services/registration/registration.
 })
 export class RegistrationComponent implements OnInit {
   form: FormGroup;
+  errorMessage: string;
+  successMessage: string;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -23,9 +25,6 @@ export class RegistrationComponent implements OnInit {
       email: '',
       doctor: '',
       username: ''
-    });
-    this.form.valueChanges.subscribe(value => {
-      console.log(value);
     });
   }
 
@@ -41,16 +40,26 @@ export class RegistrationComponent implements OnInit {
     return this.form.get('password');
   }
 
-  get() {
+  get email() {
     return this.form.get('email');
   }
 
   onSubmit() {
     this.registrationService
       .sendRegistrationData(this.form.value)
-      .subscribe((data) => {
-        console.log(data);
+      .subscribe(result => {
+        if (result.error) {
+          this.errorMessage = result.error;
+        } else {
+          this.successMessage = 'Successful registration!';
+          this.deleteValues();
+        }
       });
-    // console.log(this.form.value);
+  }
+  deleteValues() {
+    this.form.get('name').setValue('');
+    this.form.get('username').setValue('');
+    this.form.get('password').setValue('');
+    this.form.get('email').setValue('');
   }
 }

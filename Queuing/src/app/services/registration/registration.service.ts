@@ -8,7 +8,7 @@ import { regData } from 'src/app/models/registrationData';
 export class RegistrationService {
   constructor(private http: HttpClient) {}
 
-  sendRegistrationData(regData: regData):any{
+  sendRegistrationData(regData: regData):any {
     return this.http.post('http://localhost:3000/register', regData);
   }
 }
