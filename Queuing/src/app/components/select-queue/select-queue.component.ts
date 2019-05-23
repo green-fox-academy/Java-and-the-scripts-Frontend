@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { NewQueue } from 'src/app/models/NewQueue';
 import { AuthenticationService } from '../../services/authentication/authentication.service';
 import { Router } from '@angular/router';
+import { QueueService } from 'src/app/services/queue/queue.service';
 
 @Component({
   selector: 'app-select-queue',
@@ -20,7 +21,9 @@ export class SelectQueueComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private authenticationService: AuthenticationService, private router: Router
+    private authenticationService: AuthenticationService,
+    private router: Router,
+    private queueService: QueueService
   ) {}
 
   ngOnInit() {
@@ -35,10 +38,9 @@ export class SelectQueueComponent implements OnInit {
       this.selectedCategory = selectedCat;
     });
 
-    this.authenticationService.authState
-      .subscribe
-      // user => (this.username = user.username)
-      ();
+    this.authenticationService.authState.subscribe(user => {
+      this.username = user.username;
+    });
   }
 
   get category() {

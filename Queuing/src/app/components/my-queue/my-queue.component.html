@@ -1,0 +1,30 @@
+<div id="main-container">
+  <nav>
+    <div id="greeting">Hi <span>Patient</span>!</div>
+    <button>log out</button>
+  </nav>
+  <div id="date-time">
+    <p id="">{{currentDate}}</p>
+    <p id="time">{{currentTime}}</p>
+  </div>
+
+  <main>
+    <div class="sidebar">
+      <button>step out of queue</button>
+      <button [routerLink]="['/home']">go back</button>
+    </div>
+
+    <div *ngIf="hasQueue; else templateName" class="queue">
+      <p>There are <span>{{queue.in_line}}</span> patients in front of you</p>
+      <p>You can still do something else for about</p>
+      <p class="remaining-time">{{remain}}</p>
+      <p>You will visit <span>{{queue.doctor}}</span> doctor</p>
+      <p>You have to go to <span>{{queue.address}}</span></p>
+    </div>
+
+    <ng-template #templateName>
+      <p>You are not standing in any queue at the moment.</p>
+    </ng-template>
+
+  </main>
+</div>
