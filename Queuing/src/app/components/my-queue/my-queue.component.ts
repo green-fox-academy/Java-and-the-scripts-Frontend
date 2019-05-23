@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { QueueService } from 'src/app/services/queue.service';
+import { QueueService } from 'src/app/services/queue/queue.service';
 import { Queue } from 'src/app/models/Queue';
 
 @Component({
