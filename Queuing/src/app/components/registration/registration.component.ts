@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { loadLContextFromNode } from '@angular/core/src/render3/discovery_utils';
+import { RegistrationService } from 'src/app/services/registration/registration.service';
 
 @Component({
   selector: 'app-registration',
@@ -10,7 +11,10 @@ import { loadLContextFromNode } from '@angular/core/src/render3/discovery_utils'
 export class RegistrationComponent implements OnInit {
   form: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private registrationService: RegistrationService
+  ) {}
 
   ngOnInit() {
     this.form = this.formBuilder.group({
@@ -20,14 +24,17 @@ export class RegistrationComponent implements OnInit {
       doctor: '',
       username: ''
     });
-    this.form.valueChanges.subscribe((value)=>{
-console.log(value);
-
-    })
+    this.form.valueChanges.subscribe(value => {
+      console.log(value);
+    });
   }
 
   get name() {
     return this.form.get('name');
+  }
+
+  get username() {
+    return this.form.get('username');
   }
 
   get password() {
@@ -38,8 +45,12 @@ console.log(value);
     return this.form.get('email');
   }
 
-  onSubmit(){
-    console.log(this.form.value);
-    
+  onSubmit() {
+    this.registrationService
+      .sendRegistrationData(this.form.value)
+      .subscribe((data) => {
+        console.log(data);
+      });
+    // console.log(this.form.value);
   }
 }
