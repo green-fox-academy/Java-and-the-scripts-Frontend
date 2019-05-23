@@ -1,0 +1,8 @@
+<div>
+  <form [formGroup]="form">
+    <select formControlName="doctor">
+      <option [ngValue]="null" selected hidden>{{ defaultValue }}</option>
+      <option *ngFor="let doctor of doctors">{{ doctor?.name }}</option>
+    </select>
+  </form>
+</div>
