@@ -11,6 +11,16 @@ import { QueueService } from 'src/app/services/queue/queue.service';
   styleUrls: ['./select-queue.component.css']
 })
 export class SelectQueueComponent implements OnInit {
+  date = new Date();
+  options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+  currentTime: string =
+    new Date().getHours() +
+    ':' +
+    new Date().getMinutes() +
+    ':' +
+    new Date().getSeconds();
+  currentDate: string = new Date().toLocaleDateString('en-US', this.options);
+
   form: FormGroup;
   defaultValueCat = 'Select your service';
   defaultValueDoc = 'Select your doctor';
@@ -27,6 +37,7 @@ export class SelectQueueComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.displayLiveTime();
     this.form = this.formBuilder.group({
       category: this.selectedCategory
         ? this.selectedCategory
@@ -49,6 +60,17 @@ export class SelectQueueComponent implements OnInit {
 
   onSelected(inputSelectedDoctor: string): void {
     this.selectedDoctor = inputSelectedDoctor;
+  }
+
+  displayLiveTime(): void {
+    setInterval(() => {
+      this.currentTime =
+        new Date().getHours() +
+        ':' +
+        new Date().getMinutes() +
+        ':' +
+        new Date().getSeconds();
+    }, 1000);
   }
 
   onSubmit(): void {

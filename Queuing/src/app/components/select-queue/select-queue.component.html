@@ -1,10 +1,21 @@
 <div id="form-container">
+  <div id="main-container">
+    <nav>
+      <div id="greeting">Hi <span>Patient</span>!</div>
+      <button>log out</button>
+    </nav>
+    <div id="date-time">
+      <p id="">{{ currentDate }}</p>
+      <p id="time">{{ currentTime }}</p>
+    </div>
+  </div>
+
   <p>Please choose which doctor you would like to visit!</p>
   <form [formGroup]="form" (ngSubmit)="onSubmit()" id="new-queue-form">
     <app-doctor-selector (select)="onSelected($event)"></app-doctor-selector>
     <select formControlName="category">
-      <option [ngValue]="null" selected hidden>{{defaultValueCat}}</option>
-      <option *ngFor="let category of categories">{{category}}</option>
+      <option [ngValue]="null" selected hidden>{{ defaultValueCat }}</option>
+      <option *ngFor="let category of categories">{{ category }}</option>
     </select>
   </form>
   <button type="submit">get in queue</button>
