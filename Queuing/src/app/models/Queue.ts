@@ -3,5 +3,5 @@ export interface Queue {
 	doctor: String,
 	address: String,
 	in_line: Number,
-	remaining_time: Number,
+	remaining_time: String,
 }

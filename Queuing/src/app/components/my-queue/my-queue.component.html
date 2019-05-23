@@ -4,8 +4,8 @@
     <button>log out</button>
   </nav>
   <div id="date-time">
-    <p id="">date comes here</p>
-    <p id="time">time comes here</p>
+    <p id="">{{currentDate}}</p>
+    <p id="time">{{currentTime}}</p>
   </div>
 
   <main>
@@ -15,11 +15,11 @@
     </div>
 
     <div *ngIf="hasQueue; else templateName" class="queue">
-      <p>There are <span>5</span> patients in front of you</p>
+      <p>There are <span>{{queue.in_line}}</span> patients in front of you</p>
       <p>You can still do something else for about</p>
-      <p class="remaining-time">x óra y perc</p>
-      <p>You will visit <span>xyz</span> doctor</p>
-      <p>You have to go to <span>Budapest, Andrássy út 66</span></p>
+      <p class="remaining-time">{{queue.remaining_time}}</p>
+      <p>You will visit <span>{{queue.doctor}}</span> doctor</p>
+      <p>You have to go to <span>{{queue.address}}</span></p>
     </div>
 
     <ng-template #templateName>
