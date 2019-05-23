@@ -17,7 +17,8 @@ export class RegistrationComponent implements OnInit {
       name: '',
       password: '',
       email: '',
-      doctor: ''
+      doctor: '',
+      username: ''
     });
     this.form.valueChanges.subscribe((value)=>{
 console.log(value);

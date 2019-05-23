@@ -4,8 +4,10 @@
   </h2>
   <div id="main-container">
     <form [formGroup]="form">
-      <label for="name">Name:*</label>
+      <label for="name"> Full Name:*</label>
       <input type="text" formControlName="name" name="name" class="input" required />
+      <label for="username"> Username:*</label>
+      <input type="text" formControlName="username" name="username" class="input" required />
       <label for="password">Password:*</label>
       <input type="password" formControlName="password" name="password" class="input" required />
       <label for="email">E-mail:*</label>
