@@ -19,8 +19,10 @@ export class HomepageComponent implements OnInit {
     new Date().getSeconds();
   currentDate: string = new Date().toLocaleDateString('en-US', this.options);
 
-  constructor(private authenticationService: AuthenticationService,
-    private router: Router) {}
+  constructor(
+    private authenticationService: AuthenticationService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.displayLiveTime();
@@ -30,6 +32,14 @@ export class HomepageComponent implements OnInit {
       }
       console.log(user);
     });
+  }
+
+  goToQueue() {
+    this.router.navigate(['/queue']);
+  }
+
+  goToMyQueue() {
+    this.router.navigate(['/myqueue']);
   }
 
   displayLiveTime(): void {
@@ -43,7 +53,7 @@ export class HomepageComponent implements OnInit {
     }, 1000);
   }
 
-  logOut(){
+  logOut() {
     this.router.navigate(['/']);
     localStorage.removeItem('authToken');
     this.authenticationService.authState.next(null);
