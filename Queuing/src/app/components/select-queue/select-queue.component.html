@@ -22,5 +22,5 @@
       <option *ngFor="let category of categories">{{ category }}</option>
     </select>
   </form>
-  <button type="submit">get in queue</button>
+  <button type="submit" (click)="submitNewQueue()">get in queue</button>
 </div>
