@@ -13,7 +13,7 @@ export class AuthenticationService {
   constructor(private http: HttpClient) {}
 
   sendLoginData(loginData: loginData): Observable<User> {
-    return this.http.post<User>('http://localhost:3000/login', loginData);
+    return this.http.post<User>('http://localhost:8080/login', loginData);
   }
 
   getUser(loginData: loginData): void {

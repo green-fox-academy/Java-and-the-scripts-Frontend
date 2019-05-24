@@ -12,10 +12,10 @@ export class QueueService {
   constructor(private http: HttpClient) { }
 
   getQueue(username): any {
-    return this.http.get(`http://localhost:3000/myqueue/${username}`);
+    return this.http.get(`http://localhost:8080/myqueue/${username}`);
   }
 
   submitNewQueue(payload: NewQueue): Observable<NewQueue> {
-    return this.http.post<NewQueue>('http://localhost:3000/queue', payload);
+    return this.http.post<NewQueue>('http://localhost:8080/queue', payload);
   }
 }
