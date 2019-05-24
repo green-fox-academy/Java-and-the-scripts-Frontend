@@ -55,7 +55,6 @@ export class RegistrationComponent implements OnInit {
     const payload = {
       ...this.form.value
     };
-    console.log(payload);
     this.registrationService.sendRegistrationData(payload).subscribe(result => {
       if (result.error) {
         this.errorMessage = result.error;

@@ -40,8 +40,8 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(payload: loginData) {
+    payload = this.form.value;
     if (payload) {
-      payload = this.form.value;
       this.authService.getUser(payload);
     }
     else if (!payload) {
