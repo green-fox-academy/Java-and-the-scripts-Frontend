@@ -53,8 +53,6 @@ export class SelectQueueComponent implements OnInit {
       if (user) {
         this.username = user.username;
       }
-      console.log(this.username);
-      console.log(user);
     });
   }
 

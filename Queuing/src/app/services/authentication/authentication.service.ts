@@ -15,7 +15,7 @@ export class AuthenticationService {
     private router: Router) {}
 
   sendLoginData(loginData: loginData): Observable<User> {
-    return this.http.post<User>('http://localhost:8080/login', loginData);
+    return this.http.post<User>('https://hidden-peak-85695.herokuapp.com/login', loginData);
   }
 
   getUser(loginData: loginData): void {

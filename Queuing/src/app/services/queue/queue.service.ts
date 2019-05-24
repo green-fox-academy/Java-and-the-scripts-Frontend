@@ -12,10 +12,10 @@ export class QueueService {
   constructor(private http: HttpClient) { }
 
   getQueue(): any {
-    return this.http.get(`http://localhost:8080/myqueue`);
+    return this.http.get(`https://hidden-peak-85695.herokuapp.com/myqueue`);
   }
 
   submitNewQueue(payload: NewQueue): Observable<NewQueue> {
-    return this.http.post<NewQueue>('http://localhost:8080/queue', payload);
+    return this.http.post<NewQueue>('https://hidden-peak-85695.herokuapp.com/queue', payload);
   }
 }

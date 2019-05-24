@@ -9,6 +9,6 @@ export class RegistrationService {
   constructor(private http: HttpClient) {}
 
   sendRegistrationData(regData: regData):any {
-    return this.http.post('http://localhost:8080/register', regData);
+    return this.http.post('https://hidden-peak-85695.herokuapp.com/register', regData);
   }
 }

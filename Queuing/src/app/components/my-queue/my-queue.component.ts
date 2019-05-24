@@ -53,7 +53,6 @@ export class MyQueueComponent implements OnInit {
 
   getMyQueue(): void {
     this.queueService.getQueue().subscribe(queue => {
-      console.log(queue);
       // this.queue = queue;
     });
   }

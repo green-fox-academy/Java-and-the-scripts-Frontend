@@ -12,32 +12,28 @@ import { AuthenticationService } from '../services/authentication/authentication
   providedIn: 'root'
 })
 export class AuthorizationConfigInterceptor implements HttpInterceptor, OnInit {
+  constructor(private authService: AuthenticationService) {}
   user;
 
-  constructor(private authService: AuthenticationService){
-  }
-  
-ngOnInit(){
-this.authService.authState.subscribe((user)=> {
-  if (user){
-    this.user = user;
-  }
-})
-}
-
   authToken = localStorage.getItem('authToken');
+
+  ngOnInit() {
+    this.authService.authState.subscribe(user => {
+      if (user) {
+        this.user = user;
+      }
+    });
+  }
 
   intercept(
     request: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    if (this.user) {
-      request = request.clone({
-        setHeaders: {
-          Authorization: `Bearer ${localStorage.getItem('authToken')}`
-        }
-      });
-    }
+    request = request.clone({
+      headers: request.headers
+        .set('Content-Type', 'application/json')
+        .set('Authorization', `Bearer ${localStorage.getItem('authToken')}`)
+    });
     return next.handle(request);
   }
 }

@@ -6,7 +6,6 @@ import { MyQueueComponent } from './components/my-queue/my-queue.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { SelectQueueComponent } from './components/select-queue/select-queue.component';
-import { AuthorizationGuard } from './guards/authorization.guard';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
