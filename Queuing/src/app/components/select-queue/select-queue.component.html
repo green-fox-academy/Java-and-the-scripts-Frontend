@@ -1,26 +1,31 @@
-<div id="form-container">
-  <div id="main-container">
-    <nav>
-      <div id="greeting">Hi <span>{{username}}</span>!</div>
-      <button>log out</button>
-    </nav>
+<div id="main-container">
+  <header>
+    <div class="logoutbuttonContainer">
+      <button class="logoutbutton">log out</button>
+    </div>
+    <div id="greeting">
+      Hi <span>{{ username }}</span
+      >!
+    </div>
     <div id="date-time">
-      <p id="">{{ currentDate }}</p>
+      <p id="date">{{ currentDate }}</p>
       <p id="time">{{ currentTime }}</p>
     </div>
+  </header>
+
+  <div class="gobackbuttonContainer">
+    <button [routerLink]="['/home']" class="gobackbutton">go back</button>
   </div>
 
-  <div class="sidebar">
-      <button [routerLink]="['/home']">go back</button>
-    </div>
-
-  <p>Please choose which doctor you would like to visit!</p>
-  <form [formGroup]="form" (ngSubmit)="onSubmit()" id="new-queue-form">
-    <app-doctor-selector (select)="onSelected($event)"></app-doctor-selector>
-    <select formControlName="category">
-      <option [ngValue]="null" selected hidden>{{ defaultValueCat }}</option>
-      <option *ngFor="let category of categories">{{ category }}</option>
-    </select>
-  </form>
-  <button type="submit">get in queue</button>
+  <div class="form-container">
+    <p>Please choose which doctor and service you would like to visit!</p>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" id="new-queue-form">
+      <app-doctor-selector (select)="onSelected($event)"></app-doctor-selector>
+      <select formControlName="category">
+        <option class="option" [ngValue]="null" selected hidden>{{ defaultValueCat }}</option>
+        <option class="option" *ngFor="let category of categories">{{ category }}</option>
+      </select>
+    </form>
+    <button type="submit" class="submitbutton" [routerLink]="['/home']">get in queue</button>
+  </div>
 </div>
