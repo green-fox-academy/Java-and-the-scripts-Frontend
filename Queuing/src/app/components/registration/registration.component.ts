@@ -3,6 +3,7 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { loadLContextFromNode } from '@angular/core/src/render3/discovery_utils';
 import { RegistrationService } from 'src/app/services/registration/registration.service';
 import { Router } from '@angular/router';
+import { regData } from 'src/app/models/registrationData';
 
 @Component({
   selector: 'app-registration',
@@ -47,14 +48,18 @@ export class RegistrationComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.form.get('role').value == true) {
-      this.form.get('role').setValue('admin');
-    } else if (this.form.get('role').value == false) {
-      this.form.get('role').setValue('user');
-    }
-    const payload = {
-      ...this.form.value
+    const payload: regData = {
+      username: this.form.get('username').value,
+      name: this.form.get('name').value,
+      email: this.form.get('email').value,
+      password: this.form.get('password').value,
+      role: ''
     };
+    if (this.form.get('role').value == true) {
+      payload.role = 'admin';
+    } else if (this.form.get('role').value == false) {
+      payload.role = 'user';
+    }
     this.registrationService.sendRegistrationData(payload).subscribe(result => {
       if (result.error) {
         this.errorMessage = result.error;

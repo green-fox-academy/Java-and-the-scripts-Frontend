@@ -10,6 +10,6 @@ export class DoctorsService {
   constructor(private http: HttpClient) {}
 
   getDoctors(): Observable<doctor[]> {
-    return this.http.get<doctor[]>('http://localhost:3000/doctors');
+    return this.http.get<doctor[]>('http://localhost:8080/doctors');
   }
 }
