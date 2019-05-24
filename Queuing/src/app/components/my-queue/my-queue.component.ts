@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { QueueService } from 'src/app/services/queue/queue.service';
 import { Queue } from 'src/app/models/Queue';
 import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-my-queue',
@@ -32,7 +33,8 @@ export class MyQueueComponent implements OnInit {
 
   constructor(
     private queueService: QueueService,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -99,5 +101,11 @@ export class MyQueueComponent implements OnInit {
         timer = duration;
       }
     }, 1000);
+  }
+
+  logOut(){
+    this.router.navigate(['/']);
+    localStorage.removeItem('authToken');
+    this.authenticationService.authState.next(null);
   }
 }

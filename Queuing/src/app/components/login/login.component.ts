@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthenticationService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -30,16 +31,22 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  get username(){
+  get username() {
     return this.form.get('username');
   }
 
-  get password(){
+  get password() {
     return this.form.get('password');
   }
-  
+
   onSubmit(payload: loginData) {
-    payload = this.form.value;
-    this.authService.getUser(payload);
+    if (payload) {
+      payload = this.form.value;
+      this.authService.getUser(payload);
+    }
+    else if (!payload) {
+      window.alert('Username and password are required!');
+      this.router.navigate(['/login'])
+    }
   }
 }

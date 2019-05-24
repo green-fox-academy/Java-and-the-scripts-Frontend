@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-homepage',
@@ -18,7 +19,8 @@ export class HomepageComponent implements OnInit {
     new Date().getSeconds();
   currentDate: string = new Date().toLocaleDateString('en-US', this.options);
 
-  constructor(private authenticationService: AuthenticationService) {}
+  constructor(private authenticationService: AuthenticationService,
+    private router: Router) {}
 
   ngOnInit() {
     this.displayLiveTime();
@@ -38,5 +40,11 @@ export class HomepageComponent implements OnInit {
         ':' +
         new Date().getSeconds();
     }, 1000);
+  }
+
+  logOut(){
+    this.router.navigate(['/']);
+    localStorage.removeItem('authToken');
+    this.authenticationService.authState.next(null);
   }
 }
