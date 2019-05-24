@@ -24,9 +24,10 @@ export class MyQueueComponent implements OnInit {
     doctor: 'Doctor Ulmer',
     address: 'Budapest, Andrássy út',
     in_line: 8,
-    remaining_time: '10:30'
+    remaining_time: '1:30:0'
   };
   remain: string = this.queue.remaining_time;
+  convertedRemainingTime: number;
   username: string;
 
   constructor(
@@ -36,13 +37,27 @@ export class MyQueueComponent implements OnInit {
 
   ngOnInit() {
     this.displayLiveTime();
-    const allMinutes = 60 * Number(this.queue.remaining_time.split(':')[1]);
-    this.displayRemainingTime(allMinutes);
+    this.convertedRemainingTime = this.convertRemainingTime();
+    this.displayRemainingTime(this.convertedRemainingTime);
     this.authenticationService.authState.subscribe(user => {
       if (user) {
         this.username = user.username;
       }
     });
+  }
+
+  convertRemainingTime () {
+    let remainingTimeInArray = this.queue.remaining_time.split(':');
+    let duration: number = 0;
+    let hour: number = Number(remainingTimeInArray[0]);
+    let minutes: number = Number(remainingTimeInArray[1]);
+    if (hour !== 0) {
+      duration += hour * 60 * 60;
+    }
+    if (minutes !== 0) {
+      duration += minutes * 60;
+    }
+    return duration;
   }
 
   getMyQueue(): void {
@@ -64,15 +79,17 @@ export class MyQueueComponent implements OnInit {
 
   displayRemainingTime(duration): any {
     let timer: number = duration;
+    let hours: number | string;
     let minutes: number | string;
     let seconds: number | string;
     setInterval(() => {
-      minutes = parseInt((timer / 60).toString(), 10);
+      hours = parseInt((timer / 3600).toString(), 10);
+      minutes = parseInt(((timer - (hours * 3600)) / 60).toString(), 10);
       seconds = parseInt((timer % 60).toString(), 10);
 
       minutes = minutes < 10 ? '0' + minutes : minutes;
       seconds = seconds < 10 ? '0' + seconds : seconds;
-      this.remain = minutes + ':' + seconds;
+      this.remain = hours + ':' + minutes + ':' + seconds;
 
       if (--timer < 0) {
         timer = duration;
