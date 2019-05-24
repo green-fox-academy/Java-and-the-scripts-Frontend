@@ -25,7 +25,7 @@ export class SelectQueueComponent implements OnInit {
   defaultValueCat = 'Select your service';
   defaultValueDoc = 'Select your doctor';
   categories: string[] = ['administration', 'consultation'];
-  selectedCategory: string = '';
+  selectedCategory = '';
   selectedDoctor: string;
   username: string;
 
@@ -50,7 +50,7 @@ export class SelectQueueComponent implements OnInit {
     });
 
     this.authenticationService.authState.subscribe(user => {
-      if(user){
+      if (user) {
         this.username = user.username;
       }
       console.log(this.username);
@@ -75,6 +75,12 @@ export class SelectQueueComponent implements OnInit {
         ':' +
         new Date().getSeconds();
     }, 1000);
+  }
+
+  logOut() {
+    this.router.navigate(['/']);
+    localStorage.removeItem('authToken');
+    this.authenticationService.authState.next(null);
   }
 
   onSubmit(): void {
