@@ -34,14 +34,6 @@ export class HomepageComponent implements OnInit {
     });
   }
 
-  goToQueue() {
-    this.router.navigate(['/queue']);
-  }
-
-  goToMyQueue() {
-    this.router.navigate(['/myqueue']);
-  }
-
   displayLiveTime(): void {
     setInterval(() => {
       this.currentTime =
