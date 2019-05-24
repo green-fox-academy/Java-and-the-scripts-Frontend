@@ -11,9 +11,9 @@ import { AuthorizationGuard } from './guards/authorization.guard';
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegistrationComponent},
-  {path: 'home', component: HomepageComponent, canActivate: [AuthorizationGuard]},
-  {path: 'queue', component: SelectQueueComponent, canActivate: [AuthorizationGuard]},
-  {path: 'myqueue', component: MyQueueComponent,canActivate: [AuthorizationGuard]},
+  {path: 'home', component: HomepageComponent },
+  {path: 'queue', component: SelectQueueComponent},
+  {path: 'myqueue', component: MyQueueComponent},
   {path: '', redirectTo: '/register', pathMatch: 'full'}
 ];
 
