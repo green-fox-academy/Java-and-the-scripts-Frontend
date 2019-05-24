@@ -28,6 +28,7 @@ export class HomepageComponent implements OnInit {
       if (user) {
         this.username = user.username;
       }
+      console.log(user);
     });
   }
 
