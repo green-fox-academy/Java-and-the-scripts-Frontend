@@ -11,8 +11,8 @@ export class QueueService {
 
   constructor(private http: HttpClient) { }
 
-  getQueue(username): any {
-    return this.http.get(`http://localhost:8080/myqueue/${username}`);
+  getQueue(): any {
+    return this.http.get(`http://localhost:8080/myqueue`);
   }
 
   submitNewQueue(payload: NewQueue): Observable<NewQueue> {

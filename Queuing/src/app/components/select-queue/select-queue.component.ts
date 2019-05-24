@@ -85,15 +85,14 @@ export class SelectQueueComponent implements OnInit {
 
   onSubmit(): void {
     const payload: NewQueue = {
-      ...this.form.value,
-      username: this.username,
-      time: new Date()
+      doctor: this.selectedDoctor,
+      category: this.selectedCategory
     };
     this.submitNewQueue(payload);
   }
 
   submitNewQueue(payload: NewQueue): void {
-    if (payload.category && payload.doctor && payload.username) {
+    if (payload.category && payload.doctor) {
       this.queueService.submitNewQueue(payload).subscribe(() => {
         this.router.navigate(['/home']);
       });
