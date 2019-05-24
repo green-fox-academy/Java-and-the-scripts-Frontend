@@ -13,16 +13,8 @@ import { AuthenticationService } from '../services/authentication/authentication
 })
 export class AuthorizationConfigInterceptor implements HttpInterceptor, OnInit {
   constructor(private authService: AuthenticationService) {}
-  user;
-
-  authToken = localStorage.getItem('authToken');
-
+  
   ngOnInit() {
-    this.authService.authState.subscribe(user => {
-      if (user) {
-        this.user = user;
-      }
-    });
   }
 
   intercept(

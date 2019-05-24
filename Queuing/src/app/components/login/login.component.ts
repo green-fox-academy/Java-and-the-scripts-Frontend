@@ -40,6 +40,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(payload: loginData) {
+    console.log(this.user);
     payload = this.form.value;
     if (payload) {
       this.authService.getUser(payload);

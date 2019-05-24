@@ -11,11 +11,13 @@ import { Router } from '@angular/router';
 export class AuthenticationService {
   authState = new BehaviorSubject<User>(null);
 
-  constructor(private http: HttpClient,
-    private router: Router) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   sendLoginData(loginData: loginData): Observable<User> {
-    return this.http.post<User>('https://hidden-peak-85695.herokuapp.com/login', loginData);
+    return this.http.post<User>(
+      'https://hidden-peak-85695.herokuapp.com/login',
+      loginData
+    );
   }
 
   getUser(loginData: loginData): void {
