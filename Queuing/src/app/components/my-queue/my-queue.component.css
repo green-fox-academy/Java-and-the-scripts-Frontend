@@ -1,0 +1,96 @@
+header {
+  height: 25vh;
+}
+
+main {
+  height: 75vh;
+}
+
+
+.logoutbuttonContainer {
+  padding-top: 20px;
+  text-align: right;
+  padding-right: 50px;
+}
+
+.logoutbutton, .deletebutton, .gobackbutton {
+  width: 130px;
+  height: 45px;
+  border-radius: 10px;
+  font-size: 25px;
+  font-weight: bold;
+  background-color: darkslategray;
+  color: white;
+  border: none;
+}
+.logoutbutton:hover, .deletebutton:hover, .gobackbutton:hover {
+  background-color: #5a0fc2;
+  cursor: pointer;
+}
+
+.buttoncontainer {
+  display: flex;
+  justify-content: space-between;
+  height: 75px;
+  width: 450px;
+  padding-left: 100px;
+  padding-bottom: 10px;
+  padding-top: 20px;
+  margin-top: 20px;
+}
+
+#greeting {
+  font-size: 40px;
+  color: darkslategray;
+  padding-left: 100px;
+  padding-bottom: 10px;
+}
+
+#date-time {
+  text-align: center;
+  font-size: 25px;
+  color: darkslategray;
+  padding-bottom: 20px;
+}
+
+.deletebutton {
+  margin-right: 15px;
+  width: 300px;
+}
+
+.gobackbutton {
+  width: 150px;
+}
+
+.queue {
+  width: 60%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+span {
+  color: #5a0fc2;
+}
+
+#greeting span {
+  color: darkslategray;
+}
+
+.queue p {
+  margin-bottom: 30px;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+#remaining-time {
+  color: #5a0fc2;
+  font-size: 40px;
+}
+
+
+.noqueue {
+  padding-left: 50px;
+  margin-bottom: 30px;
+  font-size: 25px;
+  font-weight: bold;
+}
