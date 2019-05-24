@@ -43,11 +43,16 @@ export class MyQueueComponent implements OnInit {
         this.username = user.username;
       }
     });
+    if (this.username){
+      this.getMyQueue(this.username);
+      console.log(this.username);
+    }
   }
 
-  getMyQueue(): void {
-    this.queueService.getQueue().subscribe(queue => {
+  getMyQueue(username): void {
+    this.queueService.getQueue(username).subscribe(queue => {
       // this.queue = queue;
+      // console.log(queue);
     });
   }
 
