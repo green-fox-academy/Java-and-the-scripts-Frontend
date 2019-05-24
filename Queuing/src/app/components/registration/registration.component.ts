@@ -25,7 +25,7 @@ export class RegistrationComponent implements OnInit {
       name: '',
       password: '',
       email: '',
-      doctor: '',
+      role: '',
       username: ''
     });
   }
@@ -47,19 +47,26 @@ export class RegistrationComponent implements OnInit {
   }
 
   onSubmit() {
-    this.registrationService
-      .sendRegistrationData(this.form.value)
-      .subscribe(result => {
-        if (result.error) {
-          this.errorMessage = result.error;
-        } else {
-          this.successMessage = 'Successful registration!';
-          this.deleteValues();
-        }
-        setTimeout(()=>{
-          this.router.navigate(['/login'])
-        }, 3000)
-      });
+    if (this.form.get('role').value == true) {
+      this.form.get('role').setValue('admin');
+    } else if (this.form.get('role').value == false) {
+      this.form.get('role').setValue('user');
+    }
+    const payload = {
+      ...this.form.value
+    };
+    console.log(payload);
+    this.registrationService.sendRegistrationData(payload).subscribe(result => {
+      if (result.error) {
+        this.errorMessage = result.error;
+      } else {
+        this.successMessage = 'Successful registration!';
+        this.deleteValues();
+      }
+      setTimeout(() => {
+        this.router.navigate(['/login']);
+      }, 3000);
+    });
   }
   deleteValues() {
     this.form.get('name').setValue('');
