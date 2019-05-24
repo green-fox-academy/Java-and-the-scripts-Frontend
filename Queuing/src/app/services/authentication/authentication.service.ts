@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { User } from 'src/app/models/user';
 import { loginData } from 'src/app/models/loginData';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,8 @@ import { loginData } from 'src/app/models/loginData';
 export class AuthenticationService {
   authState = new BehaviorSubject<User>(null);
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,
+    private router: Router) {}
 
   sendLoginData(loginData: loginData): Observable<User> {
     return this.http.post<User>('http://localhost:8080/login', loginData);
@@ -19,6 +21,7 @@ export class AuthenticationService {
   getUser(loginData: loginData): void {
     this.sendLoginData(loginData).subscribe((user: User) => {
       this.authState.next(user);
+      this.router.navigate(['/home']);
     });
   }
 }
